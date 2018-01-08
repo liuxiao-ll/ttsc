@@ -38,6 +38,10 @@ export default{
   created() {
     this.$http.get('/good').then((res) => {
       res = res.body
+      if (res.status === '00') {
+        this.seller = {'type': 0}
+        this.$router.push('/register')
+      }
       if (res.status === '0') {
         this.seller = Object.assign({}, this.seller, res.result.seller)
       }

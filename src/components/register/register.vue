@@ -33,7 +33,14 @@
 </template>
 
 <script>
-
+  export default{
+    props: {
+      seller: {
+        type: Object,
+        default: 0
+      }
+    }
+  }
 </script>
 
 <style scoped>

@@ -6,9 +6,11 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import './common/css/index.css'
 import router from './router'
+import ElementUI from 'element-ui'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
