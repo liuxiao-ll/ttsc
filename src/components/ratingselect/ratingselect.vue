@@ -63,12 +63,12 @@
     computed: {
       positive() {
         return this.ratings.filter((rating) => {
-          return rating.rateType === Positive
+          return rating.ratetypeName === Positive
         })
       },
       negative() {
         return this.ratings.filter((rating) => {
-          return rating.rateType === Negative
+          return rating.ratetypeName === Negative
         })
       }
     }

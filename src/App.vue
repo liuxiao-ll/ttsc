@@ -36,10 +36,10 @@ export default{
     vHeader: header
   },
   created() {
-    this.$http.get('/api/seller?id=' + this.seller.id).then((res) => {
+    this.$http.get('/good').then((res) => {
       res = res.body
-      if (res.errno === 0) {
-        this.seller = Object.assign({}, this.seller, res.data)
+      if (res.status === '0') {
+        this.seller = Object.assign({}, this.seller, res.result.seller)
       }
     })
   }

@@ -28,7 +28,7 @@
       <ratingselect :selectType="selectType" :onlyContent="onlyContent" :ratings="ratings" @ratingtype="ratingtype" @toggle="toggle"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="rating in ratings"  class="rating-item border-1px" v-show="IsShow(rating.rateType, rating.text)">
+          <li v-for="rating in ratings"  class="rating-item border-1px" v-show="IsShow(rating.ratetypeName, rating.text)">
             <div class="avatar">
               <img width="28" height="28" :src="rating.avatar">
             </div>
@@ -88,13 +88,13 @@
       ratingtype(type) {
         this.selectType = type
         this.$nextTick(() => {
-          this.BScroll.refresh()
+          this.menuScroll.refresh()
         })
       },
       toggle() {
         this.onlyContent = !this.onlyContent
         this.$nextTick(() => {
-          this.BScroll.refresh()
+          this.menuScroll.refresh()
         })
       }
     },
@@ -104,10 +104,10 @@
       ratingselect
     },
     created() {
-      this.$http.get('/api/rating').then((res) => {
+      this.$http.get('/good').then((res) => {
         res = res.body
-        if (res.errno === 0) {
-          this.ratings = res.data
+        if (res.status === '0') {
+          this.ratings = res.result.ratings
           this.$nextTick(() => {
             this.menuScroll = new BScroll(this.$refs.ratings, {
               click: true

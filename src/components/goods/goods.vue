@@ -56,10 +56,10 @@
       }
     },
     created() {
-      this.$http.get('/api/goods').then((res) => {
+      this.$http.get('/good').then((res) => {
         res = res.body
-        if (res.errno === 0) {
-          this.goods = res.data
+        if (res.status === '0') {
+          this.goods = res.result.goods
           this.$nextTick(() => {
             this._initScroll()
             this._calculateHeight()
