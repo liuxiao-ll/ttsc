@@ -32,10 +32,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/good': {
+      '/goods': {
         target: 'http://localhost:3000'
       },
-      '/good/*': {
+      '/goods/*': {
         target: 'http://localhost:3000'
       },
       '/users/*':{

@@ -24,8 +24,8 @@
               </p>
           </div>
           <div class="register-button">
-            <button class="confirm-register" type="button" v-show="this.seller.num === 1" @click="register">{{action}}</button>
-            <button class="confirm-register" type="button" v-show="this.seller.num === 0" @click="login">{{action}}</button>
+            <button class="confirm-register" type="button" v-show="this.log.num === 1" @click="register">{{action}}</button>
+            <button class="confirm-register" type="button" v-show="this.log.num === 0" @click="login">{{action}}</button>
           </div>
           <div class="about">
             <div class="text">关于我们</div>
@@ -39,8 +39,9 @@
 <script>
   export default{
     props: {
-      seller: {
-        type: Object
+      log: {
+        type: Object,
+        default: {num: 0}
       }
     },
     data() {
@@ -54,10 +55,10 @@
     },
     computed: {
       action() {
-        return this.seller.num === 0 ? '登陆' : '注册'
+        return this.log.num === 0 ? '登陆' : '注册'
       },
       noAction() {
-        return this.seller.num === 1 ? '登陆' : '注册'
+        return this.log.num === 1 ? '登陆' : '注册'
       }
     },
     methods: {
@@ -78,11 +79,11 @@
         })
       },
       change() {
-        if (this.seller.num === 1) {
-          this.seller.num = 0
+        if (this.log.num === 1) {
+          this.log.num = 0
           this.changeAction = false
         } else {
-          this.seller.num = 1
+          this.log.num = 1
           this.changeAction = false
         }
         setTimeout(() => {
@@ -96,7 +97,7 @@
         }).then((res) => {
           res = res.data
           if (res.status === '0') {
-            this.$router.push('/goods')
+            this.$router.push('/good')
             this.isError = false
             this.errorText = ''
           } else {

@@ -3,7 +3,7 @@
     <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
         <div class="tab-item">
-          <router-link :to="{path:'/goods'}">商品</router-link>  
+          <router-link :to="{path:'/good'}">商品</router-link>  
         </div>
         <div class="tab-item">
           <router-link :to="{path:'/ratings'}">评论</router-link>  
@@ -13,7 +13,7 @@
         </div>
     </div>
     <keep-alive>
-      <router-view :seller="seller"></router-view>
+      <router-view :seller="seller" :log="log"></router-view>
     </keep-alive>
     <confirm :text="text" :btnText="btnText" ref="confirm" @confirm="confirm"></confirm>
   </div>
@@ -33,7 +33,8 @@ export default{
         })()
       },
       text: '请先登录才能进行后续操作！',
-      btnText: '确定'
+      btnText: '确定',
+      log: {}
     }
   },
   components: {
@@ -41,7 +42,7 @@ export default{
     confirm
   },
   created() {
-    this.$http.get('/good').then((res) => {
+    this.$http.get('/goods').then((res) => {
       res = res.body
       if (res.status === '00') {
         this.seller = {'num': 0, 'path': res.result}
@@ -49,6 +50,14 @@ export default{
       }
       if (res.status === '0') {
         this.seller = Object.assign({}, this.seller, res.result.seller)
+        this.$http.get('/goods/checkLogin').then((res) => {
+          res = res.data
+          if (res.status === '1') {
+            this.$router.push('/register')
+            this.log = {'num': 0, 'path': res.result}
+            this.$refs.confirm.show()
+          }
+        })
       }
     })
   },
@@ -61,14 +70,17 @@ export default{
       this.$refs.confirm.cancel()
     },
     init() {
-      this.$http.get('/good').then((res) => {
+      this.$http.get('/goods').then((res) => {
         res = res.body
-        if (res.status === '00') {
-          this.seller = {'num': 0, 'path': res.result}
-          this.$refs.confirm.show()
-        }
         if (res.status === '0') {
           this.seller = Object.assign({}, this.seller, res.result.seller)
+          this.$http.get('/goods/checkLogin').then((res) => {
+            res = res.data
+            if (res.status === '1') {
+              this.log = {'num': 0, 'path': res.result}
+              this.$refs.confirm.show()
+            }
+          })
         }
       })
     }

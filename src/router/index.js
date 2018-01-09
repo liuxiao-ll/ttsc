@@ -11,7 +11,7 @@ export default new Router({
   linkActiveClass: 'active',
   mode: 'history',
   routes: [{
-    path: '/goods',
+    path: '/good',
     component: goods
   },
   {
@@ -24,7 +24,7 @@ export default new Router({
   },
   {
     path: '/',
-    redirect: '/register'
+    redirect: '/good'
   },
   {
     path: '/register',

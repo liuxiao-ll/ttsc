@@ -41,4 +41,18 @@ router.get('/', (req, res, next) => {
   // }
 })
 
+
+router.get('/checkLogin', (req, res, next) => {
+  if (!req.cookies.userId) {
+    res.json({
+      status: '1',
+      result: '未登录'
+    })
+  } else {
+    res.json({
+      status: '0',
+      result: '登陆成功'
+    })
+  }
+})
 module.exports = router

@@ -56,7 +56,7 @@
       }
     },
     created() {
-      this.$http.get('/good').then((res) => {
+      this.$http.get('/goods').then((res) => {
         res = res.body
         if (res.status === '0') {
           this.goods = res.result.goods
