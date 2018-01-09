@@ -37,9 +37,10 @@
           </li>
         </ul>
       </div>
-      <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" ref="shopcart"></shopcart>
+      <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" ref="shopcart" @pay="pay"></shopcart>
   </div>
   <food @on-change="cartAdd" :food="selectedfood" ref="food"></food>
+  <router-view></router-view>
 </div>
 </template>
 
@@ -126,6 +127,9 @@
         let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook')
         let el = foodList[index]
         this.foodsScroll.scrollToElement(el, 300)
+      },
+      pay() {
+        this.$router.push('/good/addcartList')
       }
     },
     computed: {

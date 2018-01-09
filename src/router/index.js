@@ -4,6 +4,7 @@ import goods from '../components/goods/goods.vue'
 import seller from '../components/seller/seller.vue'
 import ratings from '../components/ratings/ratings.vue'
 import register from '../components/register/register.vue'
+import addcartList from '../components/addcartList/addcartList.vue'
 
 Vue.use(Router)
 
@@ -12,7 +13,13 @@ export default new Router({
   mode: 'history',
   routes: [{
     path: '/good',
-    component: goods
+    component: goods,
+    children: [
+      {
+        path: 'addcartList',
+        component: addcartList
+      }
+    ]
   },
   {
     path: '/seller',

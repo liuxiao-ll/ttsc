@@ -177,7 +177,7 @@
         if (this.total < this.minPrice) {
           return
         }
-        window.alert(`需要支付${this.totalPrice}`)
+        this.$emit('pay')
       },
       hidelist() {
         this.fold = true
