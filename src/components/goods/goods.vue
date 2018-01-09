@@ -40,7 +40,7 @@
       <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" ref="shopcart" @pay="pay"></shopcart>
   </div>
   <food @on-change="cartAdd" :food="selectedfood" ref="food"></food>
-  <router-view></router-view>
+  <router-view :selectFoods="selectFoods"></router-view>
 </div>
 </template>
 

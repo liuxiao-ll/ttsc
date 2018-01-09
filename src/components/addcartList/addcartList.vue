@@ -5,7 +5,17 @@
 </template>
 
 <script>
-
+  export default{
+    prop: {
+      selectFoods: {
+        type: Array,
+        default: []
+      }
+    },
+    created() {
+      console.log(this.selectFoods)
+    }
+  }
 </script>
 
 <style scoped>
