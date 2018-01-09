@@ -54,6 +54,6 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-  @import '../../common/st/confirm.styl'
+<style scoped>
+  @import '../../common/st/confirm/confirm.css'
 </style>

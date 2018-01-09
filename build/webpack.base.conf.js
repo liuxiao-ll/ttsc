@@ -74,6 +74,10 @@ module.exports = {
       {
         test: /\.(html | htm)$/,
         loader: 'html-withimg-loader'
+      },
+      {
+        test: /\.(html | htm)$/,
+        loader: 'html-withimg-loader'
       }
     ]
   }

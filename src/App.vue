@@ -15,12 +15,14 @@
     <keep-alive>
       <router-view :seller="seller"></router-view>
     </keep-alive>
+    <confirm :text="text" :btnText="btnText" ref="confirm" @confirm="confirm"></confirm>
   </div>
 </template>
 
 <script>
 import { urlParse } from './common/js/util'
 import header from './components/header/header.vue'
+import confirm from './base/confirm/confirm.vue'
 export default{
   data() {
     return {
@@ -29,23 +31,47 @@ export default{
           let queryParam = urlParse()
           return queryParam.id
         })()
-      }
+      },
+      text: '请先登录才能进行后续操作！',
+      btnText: '确定'
     }
   },
   components: {
-    vHeader: header
+    vHeader: header,
+    confirm
   },
   created() {
     this.$http.get('/good').then((res) => {
       res = res.body
       if (res.status === '00') {
-        this.seller = {'type': 0}
-        this.$router.push('/register')
+        this.seller = {'num': 0, 'path': res.result}
+        this.$refs.confirm.show()
       }
       if (res.status === '0') {
         this.seller = Object.assign({}, this.seller, res.result.seller)
       }
     })
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    confirm() {
+      this.$router.push('/register')
+      this.$refs.confirm.cancel()
+    },
+    init() {
+      this.$http.get('/good').then((res) => {
+        res = res.body
+        if (res.status === '00') {
+          this.seller = {'num': 0, 'path': res.result}
+          this.$refs.confirm.show()
+        }
+        if (res.status === '0') {
+          this.seller = Object.assign({}, this.seller, res.result.seller)
+        }
+      })
+    }
   }
 }
 </script>
