@@ -4,7 +4,8 @@ import goods from '../components/goods/goods.vue'
 import seller from '../components/seller/seller.vue'
 import ratings from '../components/ratings/ratings.vue'
 import register from '../components/register/register.vue'
-import addcartList from '../components/addcartList/addcartList.vue'
+// import addcartList from '../components/addcartList/addcartList.vue'
+import commitOrderList from '../components/commit-orderList/commit-orderList.vue'
 
 Vue.use(Router)
 
@@ -16,8 +17,8 @@ export default new Router({
     component: goods,
     children: [
       {
-        path: 'addcartList',
-        component: addcartList
+        path: 'commitOrderList',
+        component: commitOrderList
       }
     ]
   },

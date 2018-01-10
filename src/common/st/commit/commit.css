@@ -1,0 +1,284 @@
+.commit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: white;
+  z-index: 60;
+}
+
+.commit .commit-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  height: 120px;
+  background: #2395ff;
+  padding-top: 15px;
+}
+
+.commit .commit-header .icon {
+  position: absolute;
+  left: 15px;
+}
+
+.commit .commit-header .text {
+  text-align: center;
+}
+
+.commit .commit-wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: 40px;
+  height: 100%;
+  width: 100%;
+  z-index: 50;
+}
+
+.commit .commit-wrapper .commit-index {
+  height: 80px;
+}
+
+.commit .commit-wrapper .commit-content {
+  background: #DFDDDD;
+  position: relative;
+  width: 100%;
+}
+
+.commit .commit-wrapper .commit-content .content-first {
+  width: 90%;
+  height: 120px;
+  position: absolute;
+  top: -70px;
+  background: white;
+  margin-left: 5%;
+  border-radius: 4px;
+  height: 120px;
+}
+
+.commit .commit-wrapper .commit-content .content-first .address {
+  text-align: center;
+  line-height: 30px;
+  padding: 10px 10px 0 10px;
+  position: relative;
+}
+
+.commit .commit-wrapper .commit-content .content-first .address .address-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.commit .commit-wrapper .commit-content .content-first .address .address-name {
+  font-size: 12px;
+  margin: 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.commit .commit-wrapper .commit-content .content-first .address .address-icon {
+  height: 20px;
+  width: 20px;
+  transform: rotate(180deg);
+  position: absolute;
+  top: 30px;
+  left: 90%;
+}
+
+.commit .commit-wrapper .commit-content .content-first .address .address-icon .icon {
+  color: rgba(7, 17, 27, 0.4);
+}
+
+.commit .commit-wrapper .commit-content .content-first .time {
+  font-size: 16px;
+  padding-left: 10px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.commit .commit-wrapper .commit-content .content-first .time .text {
+  color: #2395ff;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.commit .commit-wrapper .commit-content .content-second {
+  margin-left: 5%;
+  width: 90%;
+  position: relative;
+  top: 60px;
+  background: white;
+  border-radius: 4px;
+  padding-top: 10px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .restruant {
+  display: flex;
+  height: 36px;
+  line-height: 36px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .restruant .name {
+  flex: 1;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .restruant .bg {
+  flex: 0 0 80px;
+  background: url("./logo.jpg");
+  width: 80px;
+  background-size: auto 24px;
+  background-repeat: no-repeat;
+  height: 24px;
+  margin-top: 6px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList {
+  width: 99%;
+  padding: 10px 2px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .foodList-list {
+  display: flex;
+  background: #EEECEC;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .foodList-list .li-left {
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .foodList-list .li-center {
+  flex: 1;
+  padding-left: 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .foodList-list .li-center .count {
+  color: rgba(7, 17, 27, 0.4);
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .foodList-list .li-right {
+  flex: 0 0 40px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .more {
+  margin-top: 20px;
+  font-size: 14px;
+  color: rgba(7, 17, 27, 0.8);
+  text-align: center;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .more div {
+  display: inline-block;
+  border: 1px solid rgba(7, 17, 27, 0.4);
+  padding: 5px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .foodList .more div .icon {
+  vertical-align: middle;
+}
+
+.commit .commit-wrapper .commit-content .content-second .roadPrice {
+  display: flex;
+  padding: 10px 10px;
+}
+
+.commit .commit-wrapper .commit-content .content-second .roadPrice.bb {
+  border-bottom: 1px solid #ddd;
+}
+
+.commit .commit-wrapper .commit-content .content-second .roadPrice .text {
+  flex: 1;
+}
+
+.commit .commit-wrapper .commit-content .content-second .roadPrice .price {
+  flex: 0 0 40px;
+  text-align: right;
+}
+
+.commit .commit-wrapper .commit-content .content-second .totalPrice {
+  text-align: right;
+  padding: 15px 10px;
+}
+
+.commit .commit-wrapper .content-last {
+  background: white;
+  position: relative;
+  width: 85%;
+  top: 70px;
+  margin-left: 5%;
+  padding: 0 10px;
+}
+
+.commit .commit-wrapper .content-last .payType {
+  padding: 20px 10px;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.commit .commit-wrapper .content-last .payType .payType-type {
+  flex: 1;
+  font-weight: bold;
+}
+
+.commit .commit-wrapper .content-last .payType .payType-online {
+  flex: 0 0 60px;
+  font-weight: bold;
+}
+
+.commit .commit-wrapper .content-last .remark {
+  padding: 20px 10px;
+  display: flex;
+  font-size: 14px;
+}
+
+.commit .commit-wrapper .content-last .remark .remark-type {
+  flex: 1;
+  font-weight: bold;
+}
+
+.commit .commit-wrapper .content-last .remark .payType-online {
+  flex: 0 0 60px;
+  font-weight: bold;
+}
+
+.commit .commit-wrapper .clearFloat {
+  height: 170px;
+  background: #DFDDDD;
+}
+
+.commit .commit-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: black;
+  z-index: 100;
+  display: flex;
+  line-height: 50px;
+}
+
+.commit .commit-footer .price {
+  flex: 1;
+  color: white;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.commit .commit-footer .commit-button {
+  background: #2395ff;
+  color: white;
+  flex: 0 0 120px;
+  height: 100%;
+  text-align: center;
+}

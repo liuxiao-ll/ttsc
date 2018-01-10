@@ -41,7 +41,6 @@ router.get('/', (req, res, next) => {
   // }
 })
 
-
 router.get('/checkLogin', (req, res, next) => {
   if (!req.cookies.userId) {
     res.json({

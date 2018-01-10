@@ -19,7 +19,7 @@ body,html{
   display: inline-block;
 }
 .clearfix:after{
-  display: bolck;
+  display: block;
   content:".";
   line-height: 0;
   height: 0;

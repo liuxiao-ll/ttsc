@@ -129,7 +129,7 @@
         this.foodsScroll.scrollToElement(el, 300)
       },
       pay() {
-        this.$router.push('/good/addcartList')
+        this.$router.push('/good/commitOrderList')
       }
     },
     computed: {
