@@ -19,11 +19,11 @@
       },
       data: {
         type: Array,
-        default: null
+        default: []
       },
       listenScroll: {
         type: Boolean,
-        default: false
+        default: true
       },
       pullup: {
         type: Boolean,

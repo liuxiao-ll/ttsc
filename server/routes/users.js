@@ -118,4 +118,135 @@ router.post('/login', (req, res, next) => {
   })
 })
 
+// 新增地址
+router.post('/addCart', (req, res, next) => {
+  let userId = req.cookies.userId
+  let userName = req.body.userName
+  let tel = req.body.tel
+  let streetName = req.body.streetName
+  let roomNumber = req.body.roomNumber
+  Users.findOne({userId: userId}, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        result: err.message
+      })
+    } else {
+      doc.addressList.push({
+        addressId: maxId(doc.addressList, 'addressId') + 1,
+        userName: userName,
+        tel: tel,
+        streetName: streetName,
+        roomNumber: roomNumber,
+        isDefault: false
+      })
+      doc.save((err1, doc1) => {
+        if (err1) {
+          res.json({
+            status: '1',
+            result: err.message
+          })
+        } else {
+          res.json({
+            status: '0',
+            result: 'sucs'
+          })
+        }
+      })
+    }
+  })
+})
+
+// 地址列表
+router.get('/addressList', (req, res, next) => {
+  let userName = req.cookies.userName
+  Users.findOne({userName: userName}, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        result: err.message
+      })
+    } else {
+      res.json({
+        status: '0',
+        result: doc.addressList
+      })
+    }
+  })
+})
+
+// 选取默认
+router.post('/choseDefault', (req, res, next) => {
+  let userId = req.cookies.userId
+  let addressId = req.body.addressId
+  let address = {}
+  Users.findOne({userId: userId}, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        result: err.message
+      })
+    } else {
+      doc.addressList.forEach((item) => {
+        if (item.addressId === addressId) {
+          address = item
+          item.isDefault = true
+        } else {
+          item.isDefault = false
+        }
+      })
+      doc.save((err1, doc1) => {
+        if (err1) {
+          res.json({
+            status: '1',
+            result: err.message
+          })
+        } else {
+          res.json({
+            status: '0',
+            result: address
+          })
+        }
+      })
+    }
+  })
+})
+
+// 订单页面抓数据
+router.get('/address', (req, res, next) => {
+  let userName = req.cookies.userName
+  Users.findOne({userName: userName}, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        result: err.message
+      })
+    } else {
+      let address = {}
+      doc.addressList.forEach((item) => {
+        if (item.isDefault === true) {
+          address = item
+        }
+      })
+      res.json({
+        status: '0',
+        result: address
+      })
+    }
+  })
+})
+function maxId(doc, arg) {
+  let arr = []
+  let max
+  if (doc.length === 0) {
+    max = 100000001
+  } else {
+    doc.forEach((item) => {
+      arr.push(item[arg])
+    })
+    max = Math.max(...arr)
+  }
+  return max
+}
+
 module.exports = router

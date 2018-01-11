@@ -9,9 +9,9 @@
         <div class="commit-index"></div>
         <div class="commit-content clearfix" ref="content">
           <div class="content-first">
-            <div class="address">
-              <P class="address-text">华容国际商务大厦 b座1405</P>
-              <p class="address-name">刘啸(先生) 18591968753</p>
+            <div class="address" @click="showAddress">
+              <P class="address-text">{{address.streetName}} {{address.roomNumber}}</P>
+              <p class="address-name">{{address.userName}} {{address.tel}}</p>
               <div class="address-icon">
                 <i class="icon-arrow_lift icon"></i>
               </div>
@@ -88,42 +88,62 @@
               <p class="payType-type">支付方式</p>
               <p class="payType-online">在线支付</p>
             </div>
-            <div class="remark">
-              <div class="remark-type">备注</div>
-              <div class="remark-online">128 ></div>
-            </div>
-            <div class="remark">
-              <p class="remark-type">备注</p>
-              <p class="remark-online">128 ></p>
+            <div class="payType">
+              <p class="payType-type">支付方式</p>
+              <p class="payType-online">在线支付</p>
             </div>
           </div>
-        </div>  
-        <div class="clearFloat"></div>
+        </div>
+          <div class="clearFloat"></div>
       </div>
     </scroll>
     <div class="commit-footer">
       <div class="price">合计￥23</div>
       <div class="commit-button">提交订单</div>
     </div>
+    <addcartList ref="addressList" @userAddress="userAddress"></addcartList>
   </div>
 </template>
 
 <script>
 import scroll from '../../base/scroll/scroll.vue'
+import addcartList from '../addcartList/addcartList'
 export default {
   components: {
-    scroll
+    scroll,
+    addcartList
   },
   data() {
     return {
       listenScroll: true,
-      scrollY: 0,
-      secondY: 0
+      scrollY,
+      secondY: 0,
+      isShowAdd: false,
+      address: {}
     }
+  },
+  created() {
+    this._initAddress()
   },
   methods: {
     scroll(pos) {
       this.scrollY = pos.y
+    },
+    showAddress() {
+      this.$refs.addressList.show()
+    },
+    _initAddress() {
+      this.$http.get('/users/address').then((res) => {
+        res = res.data
+        if (res.status === '0') {
+          this.address = res.result
+        } else {
+          console.log(res.result)
+        }
+      })
+    },
+    userAddress() {
+      this._initAddress()
     }
   },
   mounted() {
@@ -138,7 +158,6 @@ export default {
   watch: {
     scrollY(newY) {
       const HEIGHT = 70
-      console.log(newY)
       if (newY < 0) {
         let percent = Math.abs(newY / HEIGHT)
         let blur = Math.min(1 * percent, 1)
@@ -148,7 +167,6 @@ export default {
       }
     },
     secondY(newY) {
-      console.log(newY)
       this.$refs.content.style.height = `${newY}px`
     }
   }
