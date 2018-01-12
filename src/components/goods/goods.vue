@@ -40,7 +40,7 @@
       <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" ref="shopcart" @pay="pay"></shopcart>
   </div>
   <food @on-change="cartAdd" :food="selectedfood" ref="food"></food>
-  <router-view :selectFoods="selectFoods"></router-view>
+  <router-view :selectFoods="selectFoods" ref="chart"></router-view>
 </div>
 </template>
 
@@ -50,6 +50,7 @@
   import shopcart from '../shopcart/shopcart'
   import cartcontrol from '../cartcontrol/cartcontrol'
   import food from '../food/food'
+  import {mapMutations, mapGetters} from 'vuex'
   export default{
     props: {
       seller: {
@@ -129,8 +130,12 @@
         this.foodsScroll.scrollToElement(el, 300)
       },
       pay() {
+        this.setGoods(this.selectFoods)
         this.$router.push('/good/commitOrderList')
-      }
+      },
+      ...mapMutations({
+        setGoods: 'SET_GOODS'
+      })
     },
     computed: {
       currentIndex() {
@@ -144,6 +149,8 @@
         return 0
       },
       selectFoods() {
+        console.log('1')
+        console.log(this.vgoods)
         let foods = []
         this.goods.forEach((good) => {
           good.foods.forEach((food) => {
@@ -153,7 +160,11 @@
           })
         })
         return foods
-      }
+      },
+      ...mapGetters([
+        'vgoods',
+        'a'
+      ])
     }
   }
 </script>

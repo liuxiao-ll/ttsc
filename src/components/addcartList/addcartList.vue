@@ -11,7 +11,7 @@
           <li class="item" v-for="item in addressList" @click="choseDefault(item)">
             <div class="animate">
               <transition name="fade">
-                <i class="el-icon-remove icon icon-active" v-show="isShowEdit"></i>
+                <i class="el-icon-remove icon icon-active" v-show="isShowEdit" @click.stop.prevent="deleteAdd(item)"></i>
               </transition>
               <div class="text" :class="{'active': item.isDefault}">
                 <p class="address">{{item.streetName}} {{item.roomNumber}}</p>
@@ -45,6 +45,7 @@
       }
     },
     created() {
+      console.log(this.selectFoods)
       this._initAddressList()
     },
     data() {
@@ -85,6 +86,14 @@
           if (res.status === '0') {
             this.addressList = res.result
           }
+        })
+      },
+      deleteAdd(item) {
+        let addressId = item.addressId
+        console.log(addressId)
+        this.$http.post('/users/deleteAddress', {addressId: addressId}).then((res) => {
+          res = res.data
+          console.log(res)
         })
       }
     },

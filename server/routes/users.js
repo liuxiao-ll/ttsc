@@ -235,6 +235,44 @@ router.get('/address', (req, res, next) => {
     }
   })
 })
+
+// 删除地址
+router.post('/deleteAddress', (req, res, next) => {
+  let userId = req.cookies.userId
+  console.log(userId)
+  let addressId = req.body.addressId
+  console.log(addressId)
+  Users.findOne({userId: userId}, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        result: err.message
+      })
+    } else {
+      Users.update({
+        userId: userId
+      }, {
+        $pull: {
+          'addressList': {
+            'addressId': addressId
+          }
+        }
+      }, (err, doc) => {
+        if (err) {
+          res.json({
+            status: '1',
+            result: err.message
+          })
+        } else {
+          res.json({
+            status: '0',
+            result: 'suc'
+          })
+        }
+      })
+    }
+  })
+})
 function maxId(doc, arg) {
   let arr = []
   let max

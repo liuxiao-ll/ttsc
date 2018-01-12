@@ -17,7 +17,7 @@ export default new Router({
     component: goods,
     children: [
       {
-        path: 'commitOrderList',
+        path: ':selectFoods',
         component: commitOrderList
       }
     ]
